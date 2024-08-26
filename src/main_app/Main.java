@@ -1,4 +1,5 @@
-import com.google.gson.Gson;
+package main_app;
+
 /*
 Задание: Управление данными студентов с использованием JSON и библиотеки Gson
 Описание
@@ -8,7 +9,7 @@ import com.google.gson.Gson;
 
 Требования
 
-Класс Student:
+Класс main_app.Student:
 Представляет студента.
 Свойства:
 id (int): уникальный идентификатор студента.
@@ -18,12 +19,12 @@ major (String): специальность студента.
 Конструктор для инициализации всех свойств.
 Геттеры и сеттеры для всех свойств.
 
-Класс StudentDatabase:
+Класс main_app.StudentDatabase:
 Управляет данными студентов.
 Свойства:
-students (List<Student>): список студентов.
+students (List<main_app.Student>): список студентов.
 Методы:
-addStudent(Student student): добавляет студента в базу данных.
+addStudent(main_app.Student student): добавляет студента в базу данных.
 removeStudent(int id): удаляет студента по идентификатору.
 findStudentById(int id): ищет студента по идентификатору.
 saveToFile(String filename): сохраняет данные студентов в JSON файл.
