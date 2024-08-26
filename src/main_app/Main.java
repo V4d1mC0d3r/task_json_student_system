@@ -38,9 +38,21 @@ loadFromFile(String filename): загружает данные студенто�
 StudentNotFoundException: выбрасывается, когда студент с заданным идентификатором не найден.
 InvalidStudentDataException: выбрасывается, когда данные студента некорректны (например, отрицательный возраст).*/
 
+import states.EditingState;
+import states.ViewingState;
 
 public class Main {
     public static void main(String[] args) {
+        StudentDatabase database = new StudentDatabase();
 
+        // Устанавливаем режим редактирования и загружаем данные
+        database.setCurrentState(new EditingState(database));
+        database.loadFromFile("students.json");
+
+        // Переключаемся в режим просмотра
+        database.setCurrentState(new ViewingState(database));
+        Student student = database.findStudentById(1);
+        System.out.println(student);
     }
 }
+

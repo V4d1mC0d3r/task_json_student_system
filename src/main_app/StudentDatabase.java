@@ -1,33 +1,46 @@
 package main_app;
 
+import states.State;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDatabase {
     private List<Student> students;
+    private State currentState;
+
+    public StudentDatabase() {
+        this.students = new ArrayList<>();
+    }
+
+    public void setCurrentState(State currentState) {
+        this.currentState = currentState;
+    }
 
     public void addStudent(Student student) {
-        students.add(student);
-    }
-    public void removeStudent(int id) {
-        students.remove(id);
+        currentState.addStudent(student);
     }
 
-    public void findStudentById(int id) {
-        for (Student student : students) {
-            if (student.getId() == id) {
-                System.out.println(student);
-            }
-        }
+    public void removeStudent(int id) {
+        currentState.removeStudent(id);
+    }
+
+    public Student findStudentById(int id) {
+        return currentState.findStudentById(id);
     }
 
     public void saveToFile(String filename) {
-        //Сохраняет данные студента в json файл
+        currentState.saveToFile(filename);
     }
 
     public void loadFromFile(String filename) {
-        //загружает из файла json в объект типа java.
+        currentState.loadFromFile(filename);
     }
 
-    //Паттерн состояния вроде делается через интерфейс, или абстрактный класс state например и пошло поехало.
-    //Исключения просто создать свои и все и через блок try catch сделать.
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
 }

@@ -1,7 +1,7 @@
 package exceptions;
 
-public class StudentNotFoundException extends Exception{
-    public StudentNotFoundException(String message){
+public class StudentNotFoundException extends RuntimeException {
+    public StudentNotFoundException(String message) {
         super(message);
     }
 }

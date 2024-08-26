@@ -1,5 +1,7 @@
 package main_app;
 
+import exceptions.InvalidStudentDataException;
+
 public class Student {
     private int id;
     private String name;
@@ -7,6 +9,9 @@ public class Student {
     private String major;
 
     public Student(int id, String name, int age, String major) {
+        if (age < 0) {
+            throw new InvalidStudentDataException("Age cannot be negative");
+        }
         this.id = id;
         this.name = name;
         this.age = age;
@@ -34,6 +39,9 @@ public class Student {
     }
 
     public void setAge(int age) {
+        if (age < 0) {
+            throw new InvalidStudentDataException("Age cannot be negative");
+        }
         this.age = age;
     }
 
@@ -43,5 +51,15 @@ public class Student {
 
     public void setMajor(String major) {
         this.major = major;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", major='" + major + '\'' +
+                '}';
     }
 }

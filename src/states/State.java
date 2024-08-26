@@ -1,22 +1,17 @@
 package states;
 
+import exceptions.StudentNotFoundException;
 import main_app.Student;
-import main_app.StudentDatabase;
 
-public abstract class State {
-    protected StudentDatabase studentDatabase;
 
-    public State(StudentDatabase studentDatabase) {
-        this.studentDatabase = studentDatabase;
-    }
+public interface State {
+    void addStudent(Student student);
 
-    public abstract void addStudent(Student student);
+    void removeStudent(int id) throws StudentNotFoundException;
 
-    public abstract void removeStudent(int id);
+    Student findStudentById(int id) throws StudentNotFoundException;
 
-    public abstract void findStudent(int id);
+    void saveToFile(String filename);
 
-    public abstract void saveToFile(Student filename);
-
-    public abstract void loadFromFile(Student filename);
+    void loadFromFile(String filename);
 }
